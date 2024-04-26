@@ -43,7 +43,7 @@ function handleSubmit() {
           <v-text-field
               label="Confirmer Mot de passe"
               type="password"
-              id="password"
+              id="verifPassword"
               v-model="verifPassword"
               required
           ></v-text-field>
