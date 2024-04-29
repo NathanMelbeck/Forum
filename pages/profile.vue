@@ -26,51 +26,59 @@
 </script>
 
 <template>
-  <section class="bg-slate-900 flex w-full h-screen text-gray-200">
-    <form
-      @submit="handleSubmit"
-      class="m-auto shadow-md shadow-gray-200 bg-gray-200 rounded-lg p-4 h-fit py-12 text-slate-800 flex flex-col w-1/3 justify-center space-y-12 items-center"
-    >
-      <h2 class="text-3xl font-semibold">Changer de mot de passe</h2>
-      <h2 v-show="error !== ''" class="text-2xl text-red-500 text-center">{{ error }}</h2>
-      <div class="relative">
-        <label for="pseudo" class="absolute -top-3 left-4 bg-gray-200 px-1">Mot de passe actuel</label>
-        <input
-          type="password"
-          name="pseudo"
-          placeholder="4ctu3elP4ss*"
-          v-model="currentPassword"
-          class="border border-slate-900 rounded-md p-2 pt-3 focus:outline-slate-800"
-          required
-        />
-      </div>
-      <div class="relative">
-        <label for="password" class="absolute -top-3 left-4 bg-gray-200 px-1">Nouveau mot de passe</label>
-        <input
-          type="password"
-          name="password"
-          placeholder="n3wP4ss*"
-          v-model="newPassword"
-          class="rounded-md p-2 pt-3 border-slate-900 border focus:outline-slate-800"
-          required
-        />
-      </div>
-      <div class="relative">
-        <label for="password" class="absolute -top-3 left-4 bg-gray-200 px-1">Répéter le mot de passe</label>
-        <input
-          type="password"
-          name="password"
-          placeholder="n3wP4ss*"
-          v-model="repeatedPassword"
-          class="rounded-md p-2 pt-3 border-slate-900 border focus:outline-slate-800"
-          required
-        />
-      </div>
-      <button
-        class="p-4 px-6 text-xl font-bold bg-purple-200 rounded-lg hover:shadow-lg hover:shadow-purple-400 transition duration-300 ease-in-out delay-100"
-      >
-        Modifier le mot de passe
-      </button>
-    </form>
-  </section>
+  <v-container class="fill-height" fluid>
+    <v-row justify="center" align="center">
+      <v-col cols="12" sm="8" md="6">
+        <v-card class="elevation-12">
+          <v-card-title class="primary lighten-1 white--text text-center">
+            <h2 class="text-3xl font-semibold">Changer de mot de passe</h2>
+          </v-card-title>
+          <v-card-text>
+            <form @submit.prevent="handleSubmit" class="flex flex-col space-y-6">
+              <v-text-field
+                  v-model="currentPassword"
+                  label="Mot de passe actuel"
+                  outlined
+                  type="password"
+                  required
+              ></v-text-field>
+              <v-text-field
+                  v-model="newPassword"
+                  label="Nouveau mot de passe"
+                  outlined
+                  type="password"
+                  required
+              ></v-text-field>
+              <v-text-field
+                  v-model="repeatedPassword"
+                  label="Répéter le mot de passe"
+                  outlined
+                  type="password"
+                  required
+              ></v-text-field>
+              <v-btn
+                  color="primary"
+                  dark
+                  block
+                  class="mx-auto"
+                  type="submit"
+              >
+                Modifier le mot de passe
+              </v-btn>
+              <v-alert
+                  v-if="error !== ''"
+                  type="error"
+                  dense
+                  outlined
+                  border="left"
+              >
+                {{ error }}
+              </v-alert>
+            </form>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
+

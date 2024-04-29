@@ -27,41 +27,38 @@
     await chargeForums();
   };
 </script>
-
 <template>
-  <form
-    @submit="handleSubmit"
-    v-show="displayCreationForm"
-    class="relative shadow-md shadow-gray-200 bg-gray-200 rounded-lg space-x-20 p-4 h-fit text-slate-800 flex flex-row w-2/3 justify-center items-center"
-  >
-    <div
-      @click="toggleCreationForm"
-      class="cursor-pointer size-8 font-black rounded-lg bg-red-500 flex flex-col items-center justify-center absolute top-4 left-4"
-    >
-      X
-    </div>
-    <h2 v-show="!isLogged" class="text-2xl text-red-500 font-bold">Vous devez être connecté pour créer un forum</h2>
-    <div v-show="isLogged" class="space-x-20 p-4 h-fit flex flex-row w-full justify-center items-center">
-      <div>
-        <h2 class="text-2xl">Créer un nouveau forum</h2>
-        <h2 class="text-xl text-red-500">{{ error }}</h2>
-      </div>
-      <div class="relative">
-        <label for="Nom" class="absolute -top-3 left-4 bg-gray-200 px-1">Nom</label>
-        <input
-          type="text"
-          name="pseudo"
-          placeholder="Mon forum"
-          v-model="name"
-          class="border border-slate-900 rounded-md p-2 pt-3 focus:outline-slate-800"
-          required
-        />
-      </div>
-      <button
-        class="p-4 px-6 text-xl font-bold bg-purple-200 rounded-lg hover:shadow-lg hover:shadow-purple-400 transition duration-300 ease-in-out delay-100"
-      >
+  <v-card v-show="displayCreationForm" class="mx-auto mt-8" max-width="600">
+    <v-toolbar color="red darken-1" dark>
+      <v-btn icon @click="toggleCreationForm">
+        <v-icon>mdi-close</v-icon>
+      </v-btn>
+      <v-toolbar-title class="ml-4 mr-4">Créer un nouveau forum</v-toolbar-title>
+    </v-toolbar>
+    <v-card-text>
+      <v-row>
+        <v-col cols="12">
+          <v-alert v-show="!isLogged" type="error" dense outlined border="left">
+            Vous devez être connecté pour créer un forum
+          </v-alert>
+        </v-col>
+      </v-row>
+      <v-row v-show="isLogged">
+        <v-col cols="12">
+          <v-text-field
+              v-model="name"
+              label="Nom"
+              outlined
+              required
+          ></v-text-field>
+        </v-col>
+      </v-row>
+    </v-card-text>
+    <v-card-actions>
+      <v-btn color="purple" dark @click="handleSubmit">
         Créer
-      </button>
-    </div>
-  </form>
+      </v-btn>
+      <span class="ml-auto">{{ error }}</span>
+    </v-card-actions>
+  </v-card>
 </template>
