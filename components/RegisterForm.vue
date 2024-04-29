@@ -19,7 +19,7 @@
             <h1 class="display-1">{{ title }}</h1>
           </v-card-title>
           <v-card-text>
-            <form @submit.prevent="handleSubmit" class="flex flex-col space-y-6">
+            <form @submit="handleSubmit($event, pseudo, password, repeatedPassword)" class="flex flex-col space-y-6">
               <v-text-field
                   v-model="pseudo"
                   label="Pseudo"
