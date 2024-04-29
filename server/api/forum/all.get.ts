@@ -5,6 +5,7 @@ import getConnection from '~/server/sql';
 import {HTTP_BAD_REQUEST, HTTP_OK, HTTP_SERVER_ERROR} from '~/common/constants/api';
 import isRowDataPacket from '~/server/functions/isRowDataPacket';
 
+// récupère tous les forums et leur nombre de sujets
 export default defineEventHandler(async (event): Promise<ApiError | ApiResponse<Forum[]>> => {
   try {
     const db: mysql.Connection = await getConnection();

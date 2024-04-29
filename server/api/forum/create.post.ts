@@ -5,6 +5,7 @@ import {ApiError, ApiResponse} from '~/common/types/api';
 import validator from 'validator';
 import isRowDataPacket from '~/server/functions/isRowDataPacket';
 
+// crée un forum par son nom
 export default defineEventHandler(async (event): Promise<ApiError | ApiResponse> => {
   try {
     const db: mysql.Connection = await getConnection();

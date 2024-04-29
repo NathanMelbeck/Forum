@@ -7,6 +7,7 @@ import validatePassword from '~/server/bcrypt/validate_password';
 import validator from 'validator';
 import isRowDataPacket from '~/server/functions/isRowDataPacket';
 
+// gère la connexion d'un utilisateur
 export default defineEventHandler(async (event): Promise<ApiError | ApiResponse<User>> => {
   try {
     const db: mysql.Connection = await getConnection();

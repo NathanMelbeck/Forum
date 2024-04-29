@@ -4,6 +4,7 @@ import {HTTP_NOT_FOUND, HTTP_OK, HTTP_SERVER_ERROR} from '~/common/constants/api
 import {ApiError, ApiResponse} from '~/common/types/api';
 import isRowDataPacket from '~/server/functions/isRowDataPacket';
 
+// récupère un sujet par son id et ses messages
 export default defineEventHandler(async (event): Promise<ApiError | ApiResponse> => {
   try {
     const db: mysql.Connection = await getConnection();

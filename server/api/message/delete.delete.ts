@@ -3,6 +3,7 @@ import mysql from 'mysql2/promise';
 import {HTTP_CREATED, HTTP_SERVER_ERROR} from '~/common/constants/api';
 import {ApiError, ApiResponse} from '~/common/types/api';
 
+// delete un message par son id
 export default defineEventHandler(async (event): Promise<ApiError | ApiResponse> => {
   try {
     const db: mysql.Connection = await getConnection();

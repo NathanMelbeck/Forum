@@ -7,6 +7,7 @@ import validatePassword from '~/server/bcrypt/validate_password';
 import encryptPassword from '~/server/bcrypt/encrypt_password';
 import isRowDataPacket from '~/server/functions/isRowDataPacket';
 
+// modifie le mot de passe d'un utilisateur
 export default defineEventHandler(async (event): Promise<ApiError | ApiResponse> => {
   try {
     const db: mysql.Connection = await getConnection();

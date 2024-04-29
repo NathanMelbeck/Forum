@@ -6,6 +6,7 @@ import validator from 'validator';
 import isRowDataPacket from '~/server/functions/isRowDataPacket';
 import encryptPassword from '~/server/bcrypt/encrypt_password';
 
+// crée un compte utilisateur
 export default defineEventHandler(async (event): Promise<ApiError | ApiResponse> => {
   try {
     const db: mysql.Connection = await getConnection();

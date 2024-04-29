@@ -4,6 +4,7 @@ import {HTTP_OK, HTTP_SERVER_ERROR} from '~/common/constants/api';
 import {ApiError, ApiResponse} from '~/common/types/api';
 import validator from 'validator';
 
+// modifie un message par son id
 export default defineEventHandler(async (event): Promise<ApiError | ApiResponse> => {
   try {
     const db: mysql.Connection = await getConnection();

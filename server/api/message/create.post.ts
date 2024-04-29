@@ -4,6 +4,7 @@ import {HTTP_CREATED, HTTP_SERVER_ERROR} from '~/common/constants/api';
 import {ApiError, ApiResponse} from '~/common/types/api';
 import validator from 'validator';
 
+// crée un message par son contenu, l'id de son sujet et l'id de son auteur
 export default defineEventHandler(async (event): Promise<ApiError | ApiResponse> => {
   try {
     const db: mysql.Connection = await getConnection();
