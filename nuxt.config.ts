@@ -1,28 +1,34 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
-import vuetify, {transformAssetUrls} from 'vite-plugin-vuetify'
+import vuetify, {transformAssetUrls} from 'vite-plugin-vuetify';
 
 export default defineNuxtConfig({
-    devtools: {enabled: true},
-    build: {
-        transpile: ['vuetify'],
+  modules: [
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/eslint-module',
+    'nuxt-server-utils',
+    '@pinia/nuxt',
+    (_options, nuxt) => {
+      nuxt.hooks.hook('vite:extendConfig', (config) => {
+        // @ts-expect-error
+        config.plugins.push(vuetify({autoImport: true}));
+      });
     },
-    modules: [
-        (_options, nuxt) => {
-            nuxt.hooks.hook('vite:extendConfig', (config) => {
-                // @ts-expect-error
-                config.plugins.push(vuetify({autoImport: true}))
-            })
-        },
-
-    ],
-    vite: {
-        vue: {
-            template: {
-                transformAssetUrls,
-            },
-        },
+  ],
+  build: {
+    transpile: ['vuetify'],
+  },
+  vite: {
+    vue: {
+      template: {
+        transformAssetUrls,
+      },
     },
-    css: ['~/assets/css/main.css'],
-})
-
-
+  },
+  nitro: {
+    experimental: {
+      websocket: true,
+    },
+  },
+  alias: {
+    pinia: '/node_modules/@pinia/nuxt/node_modules/pinia/dist/pinia.mjs',
+  },
+});

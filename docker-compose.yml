@@ -1,28 +1,20 @@
-version: '3.8'
-networks:
-  forum.net:
-    driver: bridge
+version: '3.9'
 
 services:
-  db:
-    image: mysql:8.3
-    container_name: db
-    environment:
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-root}
-      - MYSQL_DATABASE=${MYSQL_DATABASE:-forum}
-      - MYSQL_USER=${MYSQL_USER:-user}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD:-password}
-    networks:
-      - forum.net
-    volumes:
-      - ./server/sql/init:/docker-entrypoint-initdb.d
+  database:
+    image: mysql
+    container_name: forum_database
+    env_file:
+      - .env
+    ports:
+      - "3306:3306"
 
-  adminer:
+  admin:
     image: adminer
-    container_name: adminer
+    container_name: forum_admin
+    env_file:
+      - .env
     depends_on:
-      - db
+      - database
     ports:
       - "8080:8080"
-    networks:
-      - forum.net
