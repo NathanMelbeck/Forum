@@ -26,7 +26,7 @@
 </script>
 
 <template>
-  <section class="flex h-screen w-full bg-slate-900 text-gray-200">
+  <section class="flex h-screen w-full">
     <RegisterForm
       :handleSubmit="handleSubmit"
       :error="error"

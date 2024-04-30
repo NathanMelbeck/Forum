@@ -26,35 +26,44 @@
 </script>
 
 <template>
-  <form
-    @submit="handleSubmit"
-    v-show="displayAnswerForm"
-    class="relative shadow-md shadow-gray-200 bg-gray-200 rounded-lg space-y-12 p-4 h-fit text-slate-800 flex flex-row w-2/3 justify-center items-center"
-  >
-    <div
-      @click="toggleAnswerForm"
-      class="cursor-pointer size-8 font-black rounded-lg bg-red-500 flex flex-col items-center justify-center absolute top-4 left-4"
-    >
-      X
-    </div>
-    <h2 v-show="!isLogged" class="text-3xl text-red-500 font-bold">Vous devez être connecté pour créer un sujet</h2>
-    <div v-show="isLogged" class="space-x-12 h-fit flex flex-row w-full justify-center items-center">
-      <h2 class="text-xl text-red-500">{{ error }}</h2>
-      <div class="relative w-2/3">
-        <label for="content" class="absolute -top-3 left-4 bg-gray-200 px-1">Message</label>
-        <textarea
-          name="content"
-          placeholder="J'ai quelque chose à dire..."
-          v-model="content"
-          class="border border-slate-900 rounded-md p-2 pt-3 focus:outline-slate-800 resize-none w-full min-h-[20vh]"
-          required
-        />
-      </div>
-      <button
-        class="p-4 px-6 text-xl font-bold bg-purple-200 rounded-lg hover:shadow-lg hover:shadow-purple-400 transition duration-300 ease-in-out delay-100"
-      >
-        Poster
-      </button>
-    </div>
-  </form>
+  <v-form @submit.prevent="handleSubmit" v-show="displayAnswerForm" class="answer-form">
+    <v-row align="center" justify="center">
+      <v-col>
+        <v-card>
+          <v-toolbar flat color="primary">
+            <v-btn icon @click="toggleAnswerForm">
+              <v-icon>mdi-close</v-icon>
+            </v-btn>
+            <v-toolbar-title>Créer un message</v-toolbar-title>
+          </v-toolbar>
+
+          <v-card-text>
+            <v-row>
+              <v-col cols="12">
+                <v-alert v-if="!isLogged" outlined color="error" dense>
+                  Vous devez être connecté pour créer un sujet
+                </v-alert>
+              </v-col>
+            </v-row>
+
+            <v-row>
+              <v-col cols="12">
+                <v-textarea
+                    v-model="content"
+                    outlined
+                    label="Message"
+                    placeholder="Rédigez votre message ici..."
+                    required
+                ></v-textarea>
+              </v-col>
+            </v-row>
+          </v-card-text>
+
+          <v-card-actions>
+            <v-btn color="primary" type="submit">Poster</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-form>
 </template>

@@ -27,9 +27,10 @@
     await chargeForums();
   };
 </script>
+
 <template>
   <v-card v-show="displayCreationForm" class="mx-auto mt-8" max-width="600">
-    <v-toolbar color="red darken-1" dark>
+    <v-toolbar color="grey darken-3" dark>
       <v-btn icon @click="toggleCreationForm">
         <v-icon>mdi-close</v-icon>
       </v-btn>
@@ -55,7 +56,7 @@
       </v-row>
     </v-card-text>
     <v-card-actions>
-      <v-btn color="purple" dark @click="handleSubmit">
+      <v-btn v-show="isLogged" color="indigo" dark @click="handleSubmit">
         Créer
       </v-btn>
       <span class="ml-auto">{{ error }}</span>

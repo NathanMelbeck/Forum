@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import goBack from '~/common/functions/goBack';
-  import formatDate from '../../common/functions/formatDate';
+  import formatDate from '~/common/functions/formatDate';
 
   const route = useRoute();
   const subjectId = route.params.id as string;
@@ -24,7 +24,7 @@
 
 <template>
   <section
-    class="min-h-screen h-fit py-8 w-full flex flex-col items-center justify-center space-y-8 bg-slate-900 text-gray-200"
+    class="min-h-screen h-fit py-8 w-full flex flex-col items-center justify-center space-y-8"
   >
     <button
       @click="goBack"
